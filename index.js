@@ -1,5 +1,6 @@
 const express = require('express');
 const cors = require('cors');
+const { v4: uuidv4 } = require('uuid'); // Import UUID
 const app = express();
 const port = process.env.PORT || 5000;
 
@@ -14,7 +15,7 @@ app.use(express.json());
 
 let products = [
     {
-        "id": 1,
+        "id": uuidv4(),
         "name": "Rice",
         "sku": "sku",
         "modifiedByName": "Asduzzaman Hisam",
@@ -48,7 +49,7 @@ let products = [
         "images": []
     },
     {
-        "id": 2,
+        "id": uuidv4(),
         "name": "Car",
         "sku": "sku",
         "modifiedByName": "Asduzzaman Hisam",
@@ -82,7 +83,7 @@ let products = [
         "images": []
     },
     {
-        "id": 3,
+        "id": uuidv4(),
         "name": "Car",
         "sku": "sku",
         "modifiedByName": "Asduzzaman Hisam",
@@ -104,17 +105,17 @@ let products = [
 // Sample categories data
 let categories = [
     {
-        "id": 1,
+        "id": uuidv4(),
         "name": "Electronics",
         "description": "Devices and gadgets"
     },
     {
-        "id": 2,
+        "id": uuidv4(),
         "name": "Clothing",
         "description": "Apparel and fashion"
     },
     {
-        "id": 3,
+        "id": uuidv4(),
         "name": "Home & Kitchen",
         "description": "Furniture and appliances"
     }
@@ -122,12 +123,12 @@ let categories = [
 // Sample currency data
 let currencies = [
     {
-        "id": 2,
+        "id": uuidv4(),
         "code": "BDT",
         "name": "Bangladesh Currency"
     },
     {
-        "id": 7,
+        "id": uuidv4(),
         "code": "USD",
         "name": "Kindom"
     }
@@ -143,7 +144,7 @@ app.get('/products', (req, res) => {
 // POST /products
 app.post('/products', (req, res) => {
     const newProduct = {
-        id: products.length + 1,
+        id: uuidv4(),
         ...req.body,
         modifiedAt: new Date().toISOString(),
         modifiedByName: "Asduzzaman Hisam",
@@ -231,7 +232,7 @@ app.post('/categories', (req, res) => {
     }
 
     const newCategory = {
-        id: categories.length + 1, // Auto-increment ID
+        id: uuidv4(), // Auto-increment ID
         name,
         description
     };
@@ -286,7 +287,7 @@ app.post('/currency', (req, res) => {
     }
 
     const newCurrency = {
-        id: currencies.length + 1, // Auto-increment ID
+        id: uuidv4(), // Auto-increment ID
         code,
         name
     };
